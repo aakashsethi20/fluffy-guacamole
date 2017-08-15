@@ -5,9 +5,12 @@ from rest_framework.views import APIView
 
 from .serializers import RegistrationSerializer
 
+from .renderers import UserJSONRenderer
+
 class RegistrationAPIView(APIView):
     # To allow any user (authenticated or not) to hit this endpoint
     permission_classes = (AllowAny,)
+    renderer_classes = (UserJSONRenderer,)
     serializer_class = RegistrationSerializer
 
     def post(self, request):
