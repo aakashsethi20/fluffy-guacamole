@@ -78,6 +78,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'conduit.wsgi.application'
 
+AUTH_USER_MODEL = 'authentication.User'
+
 
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases

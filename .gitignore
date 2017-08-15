@@ -95,3 +95,5 @@ db.sqlite3
 # Test code file
 __test__.py
 
+# VSCode files
+.vscode/
