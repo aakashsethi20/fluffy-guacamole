@@ -62,3 +62,32 @@ class LoginSerializer(serializers.Serializer):
             'username': user.username,
             'token': user.token
         }
+
+class UserSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(
+        min_length=8,
+        max_length=128,
+        write_only=True
+    )
+
+    class Meta:
+        model = User
+        fields = ('email', 'username', 'password', 'token',)
+
+        read_only_fields = ('token',)
+
+    def update(self, instance, validated_data):
+        
+        # passwords should not be updated with setattr. Will use Django's hashing and salt function
+        # but need to extract it before iterating over the validated_data
+        password = validated_data.pop('password', None)
+
+        for (key, value) in validated_data.items():
+            setattr(instance, key, value)
+
+        if password is not None:
+            instance.set_password(password)
+
+        instance.save()
+
+        return instance
