@@ -110,6 +110,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+REST_FRAMEWORK = {
+    'EXCEPTION_HANDLER': 'conduit.apps.core.exceptions.core_exception_handler',
+    'NON_FIELD_ERRORS_KEY': 'error',
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
