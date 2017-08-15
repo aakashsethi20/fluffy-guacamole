@@ -113,6 +113,9 @@ AUTH_PASSWORD_VALIDATORS = [
 REST_FRAMEWORK = {
     'EXCEPTION_HANDLER': 'conduit.apps.core.exceptions.core_exception_handler',
     'NON_FIELD_ERRORS_KEY': 'error',
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'conduit.apps.authentication.backends.JWTAuthentication',
+    ),
 }
 
 # Internationalization
