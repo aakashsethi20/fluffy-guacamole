@@ -8,6 +8,8 @@ from django.contrib.auth.models import (
 )
 from django.db import models
 
+from conduit.apps.core.models import TimestampedModel
+
 class UserManager(BaseUserManager):
     """
     This class will handle the creation of our custom user to suit JWT needs.
@@ -39,7 +41,7 @@ class UserManager(BaseUserManager):
 
         return user
 
-class User(AbstractBaseUser, PermissionsMixin):
+class User(AbstractBaseUser, PermissionsMixin, TimestampedModel):
     
     # indexing username for faster lookup
     username = models.CharField(db_index=True, max_length=255, unique=True)
@@ -52,10 +54,6 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     # is_staff required by Django to see if it should allow them to log in to admin
     is_staff = models.BooleanField(default=False)
-
-    created_at = models.DateTimeField(auto_now_add=True)
-
-    updated_at = models.DateTimeField(auto_now=True)
 
     # defining what to use for login to Django
     USERNAME_FIELD = 'email'
