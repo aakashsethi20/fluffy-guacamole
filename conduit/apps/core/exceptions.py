@@ -9,7 +9,8 @@ def core_exception_handler(exc, context):
     
     # adding ValidationError to the handlers to be handled by us
     handlers = {
-        'ValidationError': _handle_generic_error
+        'ValidationError': _handle_generic_error,
+        'ProfileDoesNotExist': _handle_generic_error,
     }
 
     exception_class = exc.__class__.__name__
