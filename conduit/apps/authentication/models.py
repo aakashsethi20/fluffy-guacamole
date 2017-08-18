@@ -29,7 +29,7 @@ class UserManager(BaseUserManager):
 
         return user
 
-    # A function to make a super_user
+    # Overriding the function from BaseUserManager. A function to make a superuser
     def create_superuser(self, username, email, password):
         if password is None:
             raise TypeError('Superusers must have a password.')
@@ -43,16 +43,10 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser, PermissionsMixin, TimestampedModel):
     
-    # indexing username for faster lookup
+    # indexing username and email for faster lookup
     username = models.CharField(db_index=True, max_length=255, unique=True)
-
-    # also need email to contact the user and to login
     email = models.EmailField(db_index=True, unique=True)
-
-    # giving the user the option to deactivate the account instead of deleting it
     is_active = models.BooleanField(default=True)
-
-    # is_staff required by Django to see if it should allow them to log in to admin
     is_staff = models.BooleanField(default=False)
 
     # defining what to use for login to Django
