@@ -65,10 +65,10 @@ class User(AbstractBaseUser, PermissionsMixin, TimestampedModel):
         return self._generate_jwt_token()
 
     def get_full_name(self):
-        return username
+        return self.username
 
     def get_short_name(self):
-        return username
+        return self.username
 
     # generating a JWT storing user ID and expiry of 60 days into the future
     def _generate_jwt_token(self):
