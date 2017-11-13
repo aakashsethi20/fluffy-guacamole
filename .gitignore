@@ -99,4 +99,7 @@ __test__.py
 .vscode/
 
 # Housekeeping
-Conduit.postman_environment.json
+*.postman_environment.json
+
+# DS Store
+.DS_Store
